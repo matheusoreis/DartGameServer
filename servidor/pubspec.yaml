@@ -8,8 +8,9 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
+  ansicolor: ^2.0.2
+  pocketbase: ^0.18.1
 
 dev_dependencies:
-  lints: ^2.1.0
-  test: ^1.24.0
+  lints: ^2.1.1
+  test: ^1.25.2
