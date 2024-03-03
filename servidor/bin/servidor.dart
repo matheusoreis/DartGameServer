@@ -1,5 +1,12 @@
-import 'package:servidor/servidor.dart' as servidor;
+import 'package:servidor/server/server_setup.dart';
+import 'package:servidor/servidor.dart';
 
 void main(List<String> arguments) {
-  print('Hello world: ${servidor.calculate()}!');
+  final ServerSetup serverSetup = ServerSetup();
+
+  /// Inicia o servidor;
+  ///
+  /// Ao iniciar o programa o servidor será iniciado chamando o método `_startServer` atráves
+  /// do callable object `serverSetup`.;
+  serverSetup();
 }
