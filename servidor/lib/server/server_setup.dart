@@ -14,9 +14,8 @@ class ServerSetup {
 
   /// Inicia o servidor.
   ///
-  /// Este método é usado para iniciar o servidor.
-  /// Ele chama o método privado `_startServer()` para configurar o socket e
-  /// aguardar conexões.
+  /// Este método é usado para iniciar o servidor. Ele chama o método privado `_startServer()`
+  /// para configurar o socket e aguardar conexões.
   void call() {
     _startServer();
   }

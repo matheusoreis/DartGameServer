@@ -58,25 +58,10 @@ class ClientConnection {
   ///
   /// Retorna uma Future que completa quando a conexão é encerrada.
   Future<void> _handleFullServer(Socket socket) async {
-    // final AlertSender alertSender = AlertSender();
-
     _logger(
       message: 'Número máximo de conexões alcançado',
       type: LoggerType.warning,
     );
-
-    // final alert = AlertModel(
-    //   title: 'Erro',
-    //   message: 'Servidor cheio. Tente novamente mais tarde.',
-    //   type: AlertType.error,
-    // );
-
-    // final ConnectionModel temporaryClient = ConnectionModel(
-    //   id: -1,
-    //   socket: socket,
-    // );
-
-    // alertSender(client: temporaryClient, alert: alert);
 
     /// Limpa o buffer e encerra a conexão
     await socket.flush();
