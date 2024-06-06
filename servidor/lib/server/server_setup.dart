@@ -2,36 +2,21 @@ import 'dart:io';
 
 import 'package:servidor/server/client_connection.dart';
 import 'package:servidor/server/server_constants.dart';
-import 'package:servidor/utils/logger/logger.dart';
-import 'package:servidor/utils/logger/types/logger_type.dart';
+import 'package:servidor/utils/logger_utils.dart';
 
-/// Classe responsável por configurar e iniciar o servidor.
-///
-/// Esta classe encapsula a lógica necessária para configurar o socket e iniciar o
-/// servidor de acordo com as configurações.
 class ServerSetup {
-  final _logger = Logger();
-
-  /// Inicia o servidor.
-  ///
-  /// Este método é usado para iniciar o servidor. Ele chama o método privado `_startServer()`
-  /// para configurar o socket e aguardar conexões.
-  void call() {
-    _startServer();
-  }
-
-  Future<void> _startServer() async {
+  Future<void> startServer() async {
     try {
       final ClientConnection clientConnection = ClientConnection();
 
-      _logger(
+      LoggerUtils.log(
         message: 'Iniciando servidor...',
-        type: LoggerType.info,
+        type: LoggerTypes.info,
       );
 
-      _logger(
+      LoggerUtils.log(
         message: 'Configurando o socket...',
-        type: LoggerType.info,
+        type: LoggerTypes.info,
       );
 
       final ServerSocket server = await ServerSocket.bind(
@@ -39,46 +24,41 @@ class ServerSetup {
         ServerConfig.serverPort,
       );
 
-      _logger(
+      LoggerUtils.log(
         message: 'Servidor iniciado com sucesso!',
-        type: LoggerType.info,
+        type: LoggerTypes.info,
       );
 
-      _logger(
+      LoggerUtils.log(
         message: 'Endereço: ${server.address.host}',
-        type: LoggerType.info,
+        type: LoggerTypes.info,
       );
 
-      _logger(
+      LoggerUtils.log(
         message: 'Porta: ${server.port}',
-        type: LoggerType.info,
+        type: LoggerTypes.info,
       );
 
-      _logger(
+      LoggerUtils.log(
         message: 'Aguardando conexões...',
-        type: LoggerType.info,
+        type: LoggerTypes.info,
       );
 
-      /// Aguarda novas conexões.
-      ///
-      /// Este loop aguarda continuamente por novas conexões ao servidor. Quando
-      /// uma nova conexão é estabelecida, ele registra o socket remoto e instancia
-      /// um novo `ClientConnection` para lidar com a conexão.
-      await for (final socket in server) {
+      await for (final Socket socket in server) {
         final String remoteAddress = socket.remoteAddress.address;
         final int remotePort = socket.remotePort;
 
-        _logger(
+        LoggerUtils.log(
           message: 'Nova conexão recebida: $remoteAddress:$remotePort',
-          type: LoggerType.info,
+          type: LoggerTypes.info,
         );
 
-        clientConnection(socket: socket);
+        clientConnection.handleNewClient(socket);
       }
     } catch (e) {
-      _logger(
+      LoggerUtils.log(
         message: 'Ocorreu um erro ao iniciar o servidor: $e',
-        type: LoggerType.error,
+        type: LoggerTypes.error,
       );
     }
   }
