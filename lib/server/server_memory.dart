@@ -1,6 +1,6 @@
-import 'package:servidor/models/connection_model.dart';
-import 'package:servidor/server/server_constants.dart';
-import 'package:servidor/server/slot_manager.dart';
+import '../models/connection_model.dart';
+import 'server_constants.dart';
+import 'slot_manager.dart';
 
 class ServerMemory {
   factory ServerMemory() {

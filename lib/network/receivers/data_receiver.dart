@@ -1,10 +1,10 @@
-import 'package:servidor/interfaces/receiver_message_interface.dart';
-import 'package:servidor/models/connection_model.dart';
-import 'package:servidor/network/packet_buffer.dart';
-import 'package:servidor/network/packets/client_packets.dart';
-import 'package:servidor/network/receivers/messages/placeholder_message.dart';
-import 'package:servidor/server/client_connection.dart';
-import 'package:servidor/utils/logger_utils.dart';
+import '../../interfaces/receiver_message_interface.dart';
+import '../../models/connection_model.dart';
+import '../packet_buffer.dart';
+import '../packets/client_packets.dart';
+import 'messages/placeholder_message.dart';
+import '../../server/client_connection.dart';
+import '../../utils/logger_utils.dart';
 
 class DataReceiver {
   DataReceiver() {

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:servidor/models/user_model.dart';
-import 'package:servidor/server/server_memory.dart';
+import 'user_model.dart';
+import '../server/server_memory.dart';
 
 interface class ConnectionModel {
   ConnectionModel({

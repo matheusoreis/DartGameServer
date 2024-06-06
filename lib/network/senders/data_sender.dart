@@ -1,7 +1,7 @@
-import 'package:servidor/models/connection_model.dart';
-import 'package:servidor/network/packet_buffer.dart';
-import 'package:servidor/server/server_memory.dart';
-import 'package:servidor/utils/logger_utils.dart';
+import '../../models/connection_model.dart';
+import '../packet_buffer.dart';
+import '../../server/server_memory.dart';
+import '../../utils/logger_utils.dart';
 
 class DataSender {
   Future<void> sendDataTo({
