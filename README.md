@@ -193,3 +193,52 @@ class DataReceiver {
 - `receiverData(ConnectionModel client, List<int> data)`: Método que recebe os dados do cliente, identifica o tipo de mensagem e chama o método receiver da mensagem correspondente.
 
 Em resumo, a classe DataReceiver permite o processamento eficiente de dados recebidos dos clientes, associando diferentes tipos de pacotes a mensagens específicas.
+
+### SlotManager
+
+A classe SlotManager é uma estrutura genérica que gerencia uma coleção de slots, onde cada slot pode conter um elemento ou estar vazio. É útil para casos onde você precisa gerenciar um número fixo de posições, como inventários em jogos, reservas em sistemas de fila, etc.
+
+```Dart
+class SlotManager<Element> {
+  SlotManager(int size);
+
+  late List<Element?> _slots;
+
+  Element? operator [](int index);
+  void operator []=(int index, Element? value);
+  bool isSlotEmpty(int index);
+  Iterable<int> getFilledSlots();
+  Iterable<int> getEmptySlots();
+  void remove(int index);
+  int add(Element value);
+  int? getFirstEmptySlot();
+  Iterable<int> countEmptySlots();
+  Iterable<int> countFilledSlots();
+  Iterable<int> find({required Element element});
+  void clear();
+  bool _checkIndex(int index);
+  void update(int index, Element value);
+  void removeWhere(bool Function(Element?) test);
+  List<Element?> getFilledSlotsAsList();
+  bool any(bool Function(Element?) test);
+}
+```
+
+- `SlotManager(int size):` Construtor que inicializa a lista de slots com o tamanho especificado.
+- `Element? operator [](int index)`: Retorna o elemento no slot especificado ou null se o índice for inválido.
+- `void operator []=(int index, Element? value)`: Define o elemento no slot especificado.
+- `bool isSlotEmpty(int index)`: Verifica se o slot no índice especificado está vazio.
+- `Iterable<int> getFilledSlots()`: Retorna um iterador com os índices dos slots preenchidos.
+- `Iterable<int> getEmptySlots()`: Retorna um iterador com os índices dos slots vazios.
+- `void remove(int index)`: Remove o elemento no slot especificado.
+- `int add(Element value)`: Adiciona um elemento ao primeiro slot vazio encontrado, retornando o índice do slot.
+- `int? getFirstEmptySlot()`: Retorna o índice do primeiro slot vazio encontrado ou null se todos os slots estiverem preenchidos.
+- `Iterable<int> countEmptySlots()`: Retorna um iterador que conta os índices dos slots vazios.
+- `Iterable<int> countFilledSlots()`: Retorna um iterador que conta os índices dos slots preenchidos.
+- `Iterable<int> find({required Element element})`: Retorna um iterador com os índices dos slots que contêm o elemento especificado.
+- `void clear()`: Limpa todos os slots.
+- `bool _checkIndex(int index)`: Verifica se o índice é válido.
+- `void update(int index, Element value)`: Atualiza o elemento no slot especificado.
+- `void removeWhere(bool Function(Element?) test)`: Remove os elementos que correspondem ao critério de teste especificado.
+- `List<Element?> getFilledSlotsAsList()`: Retorna uma lista de todos os slots preenchidos.
+- `bool any(bool Function(Element?) test)`: Verifica se algum slot corresponde ao critério de teste especificado.
