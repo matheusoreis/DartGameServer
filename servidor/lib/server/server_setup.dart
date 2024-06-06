@@ -20,8 +20,8 @@ class ServerSetup {
       );
 
       final ServerSocket server = await ServerSocket.bind(
-        ServerConfig.serverHost,
-        ServerConfig.serverPort,
+        ServerConstants.serverHost,
+        ServerConstants.serverPort,
       );
 
       LoggerUtils.log(
