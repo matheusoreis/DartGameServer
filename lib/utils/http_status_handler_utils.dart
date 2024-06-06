@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
-import '../models/error_response_model.dart';
-import '../models/success_response_model.dart';
-import 'result_utils.dart';
+import 'package:servidor/models/error_response_model.dart';
+import 'package:servidor/models/success_response_model.dart';
+import 'package:servidor/utils/result_utils.dart';
 
 class HttpStatusHandler {
   static Future<ResultUtils<ErrorResponseModel, SuccessResponseModel<T>>> handleResponse<T>({

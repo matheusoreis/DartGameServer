@@ -1,12 +1,6 @@
 import 'dart:typed_data';
 
 class RingBuffer {
-  final int capacity;
-  final Uint8List _buffer;
-  int _start = 0;
-  int _end = 0;
-  bool _isFull = false;
-
   RingBuffer(this.capacity) : _buffer = Uint8List(capacity) {
     if (capacity <= 0) {
       throw ArgumentError('Buffer must have a positive capacity.');
@@ -24,6 +18,12 @@ class RingBuffer {
       _isFull = true;
     }
   }
+
+  final int capacity;
+  final Uint8List _buffer;
+  int _start = 0;
+  int _end = 0;
+  bool _isFull = false;
 
   int get length => _isFull ? capacity : (_end - _start + capacity) % capacity;
 
@@ -65,11 +65,11 @@ class RingBuffer {
       throw ArgumentError('Not enough elements in the buffer.');
     }
 
-    int available = length;
+    final int available = length;
 
-    int count = size < available ? size : available;
+    final int count = size < available ? size : available;
 
-    Uint8List result = Uint8List(count);
+    final Uint8List result = Uint8List(count);
 
     for (int i = 0; i < count; i++) {
       result[i] = _buffer[(_start + i) % capacity];

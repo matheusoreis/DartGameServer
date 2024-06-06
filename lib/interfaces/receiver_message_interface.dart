@@ -1,4 +1,4 @@
-import '../models/connection_model.dart';
+import 'package:servidor/models/connection_model.dart';
 
 abstract class ReceiverMessageInterface {
   void receiver({

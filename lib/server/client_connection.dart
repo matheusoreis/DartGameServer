@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import '../models/connection_model.dart';
-import '../network/packet_buffer.dart';
-import '../network/receivers/data_receiver.dart';
-import '../network/ring_buffer.dart';
-import 'server_memory.dart';
-import '../utils/logger_utils.dart';
+import 'package:servidor/models/connection_model.dart';
+import 'package:servidor/network/packet_buffer.dart';
+import 'package:servidor/network/receivers/data_receiver.dart';
+import 'package:servidor/network/ring_buffer.dart';
+import 'package:servidor/server/server_memory.dart';
+import 'package:servidor/utils/logger_utils.dart';
 
 class ClientConnection {
   void handleNewClient(Socket socket) {

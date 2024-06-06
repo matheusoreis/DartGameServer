@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'client_connection.dart';
-import 'server_constants.dart';
-import '../utils/logger_utils.dart';
+import 'package:servidor/server/client_connection.dart';
+import 'package:servidor/server/server_constants.dart';
+import 'package:servidor/utils/logger_utils.dart';
 
 class ServerSetup {
   Future<void> startServer() async {

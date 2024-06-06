@@ -1,4 +1,4 @@
-import 'server_globals.dart';
+import 'package:servidor/server/server_globals.dart';
 
 class ServerLoop {
   static Future<void> start() async {
