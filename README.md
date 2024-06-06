@@ -158,6 +158,8 @@ class RingBuffer {
 
 Em resumo o `PacketBuffer` oferece uma interface para leitura e escrita de dados binários, enquanto o `RingBuffer` fornece um buffer circular eficiente para armazenamento temporário dos bytes.
 
+### O DataSender e o Data Receiver
+
 ### DataSender
 
 A classe DataSender é responsável pelo envio de dados aos clientes conectados ao servidor. Ela fornece métodos para enviar dados a um cliente específico, a todos os clientes conectados, ou a todos os clientes exceto um específico.
@@ -193,6 +195,8 @@ class DataReceiver {
 - `receiverData(ConnectionModel client, List<int> data)`: Método que recebe os dados do cliente, identifica o tipo de mensagem e chama o método receiver da mensagem correspondente.
 
 Em resumo, a classe DataReceiver permite o processamento eficiente de dados recebidos dos clientes, associando diferentes tipos de pacotes a mensagens específicas.
+
+## O SlotManager e o ServerMemory
 
 ### SlotManager
 
@@ -267,3 +271,7 @@ class ServerMemory {
 - `SlotManager<ConnectionModel> clientConnections`: Gerencia as conexões dos clientes utilizando um SlotManager para armazenar até ServerConstants.maxPlayers conexões.
 
 Em resumo, a classe ServerMemory implementa um padrão de design Singleton para gerenciar a memória do servidor. Ela possui uma única instância _singletonInstance que é acessível através de um método factory ServerMemory().
+
+### Licença
+
+Este projeto está licenciado sob a Licença Pública Mozilla, Versão 2.0 - consulte o arquivo [LICENSE](LICENSE) para obter detalhes.
