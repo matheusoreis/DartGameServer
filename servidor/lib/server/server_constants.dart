@@ -1,17 +1,17 @@
-/// Classe responsável por armazenar as configurações do servidor.
-///
-/// Esta classe fornece constantes para configurar diversos aspectos do servidor,
-/// como o nome do servidor, o número máximo de jogadores suportados, o host entre outros.
-class ServerConfig {
-  /// Nome do servidor.
-  static const String serverName = 'Phoenix Game Server';
+class ServerConstants {
+  static const String serverName = 'Dart Game Server';
 
-  /// Número máximo de jogadores suportados.
-  static const int maxPlayers = 2;
+  static const int maxPlayers = 4;
 
-  /// Host do servidor.
   static const String serverHost = '127.0.0.1';
 
-  /// Porta do servidor.
-  static const int serverPort = 8090;
+  static const int serverPort = 8080;
+
+  static const String apiUrl = 'http://127.0.0.1:3000';
+
+  static const int majorVersion = 1;
+
+  static const int minorVersion = 0;
+
+  static const String serverToken = '0a638f92f2509f9ba446f0c2cf311914e4c05a77243f54a42e8ea4eb16a350d7';
 }
