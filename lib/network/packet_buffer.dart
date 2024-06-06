@@ -79,12 +79,6 @@ class ByteReader {
     return byteData.getUint64(0, _endian);
   }
 
-  List<int> _readValue(int length) {
-    final List<int> result = _buffer.getArray().sublist(_buffer._readHead, _buffer._readHead + length);
-    _buffer.incrementReadHead(length);
-    return result;
-  }
-
   List<int> getBytes({required int length, bool moveReadHead = true}) {
     final List<int> result = _readValue(length);
     if (!moveReadHead) _buffer.revertRead(length);
@@ -107,6 +101,12 @@ class ByteReader {
 
     return result;
   }
+
+  List<int> _readValue(int length) {
+    final List<int> result = _buffer.getArray().sublist(_buffer._readHead, _buffer._readHead + length);
+    _buffer.incrementReadHead(length);
+    return result;
+  }
 }
 
 class ByteWriter {
@@ -117,13 +117,6 @@ class ByteWriter {
   final ByteBuffer _buffer;
   late bool _useUtf8;
   final Endian _endian;
-
-  void _writeValue(ByteData data) {
-    final int length = data.lengthInBytes;
-    if (_buffer._writeHead + length > _buffer.count) _buffer.allocate(length);
-    _buffer.getArray().setRange(_buffer._writeHead, _buffer._writeHead + length, data.buffer.asUint8List());
-    _buffer.incrementWriteHead(length);
-  }
 
   void put8(int value) {
     if (_buffer._writeHead >= _buffer.count) _buffer.allocate(1);
@@ -161,6 +154,13 @@ class ByteWriter {
     if (stringLength > 0) {
       putBytes(stringBytes);
     }
+  }
+
+  void _writeValue(ByteData data) {
+    final int length = data.lengthInBytes;
+    if (_buffer._writeHead + length > _buffer.count) _buffer.allocate(length);
+    _buffer.getArray().setRange(_buffer._writeHead, _buffer._writeHead + length, data.buffer.asUint8List());
+    _buffer.incrementWriteHead(length);
   }
 }
 
