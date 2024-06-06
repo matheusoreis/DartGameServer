@@ -9,8 +9,7 @@ class ByteBuffer {
 
   void allocate(int additionalSize) {
     _bufferSize += additionalSize;
-    Uint8List newBuffer = Uint8List(_bufferSize);
-    newBuffer.setRange(0, _writeHead, _buffer);
+    final Uint8List newBuffer = Uint8List(_bufferSize)..setRange(0, _writeHead, _buffer);
     _buffer = newBuffer;
   }
 
@@ -51,16 +50,16 @@ class ByteBuffer {
 }
 
 class ByteReader {
-  final ByteBuffer _buffer;
-  late bool _useUtf8;
-  final Endian _endian;
-
   ByteReader(this._buffer, {bool useUtf8 = true, Endian endian = Endian.little}) : _endian = endian {
     _useUtf8 = useUtf8;
   }
 
+  final ByteBuffer _buffer;
+  late bool _useUtf8;
+  final Endian _endian;
+
   int get8({bool moveReadHead = true}) {
-    int value = _buffer.getArray()[_buffer._readHead];
+    final int value = _buffer.getArray()[_buffer._readHead];
     if (moveReadHead) _buffer.incrementReadHead(1);
     return value;
   }
@@ -86,13 +85,13 @@ class ByteReader {
     return result;
   }
 
-  List<int> readBytes({required int length, bool moveReadHead = true}) {
+  List<int> getBytes({required int length, bool moveReadHead = true}) {
     final List<int> result = _readValue(length);
     if (!moveReadHead) _buffer.revertRead(length);
     return result;
   }
 
-  String readString({bool moveReadHead = true}) {
+  String getString({bool moveReadHead = true}) {
     final int stringLength = get32();
     if (stringLength <= 0) {
       return '';
@@ -111,16 +110,16 @@ class ByteReader {
 }
 
 class ByteWriter {
-  final ByteBuffer _buffer;
-  late bool _useUtf8;
-  final Endian _endian;
-
   ByteWriter(this._buffer, {bool useUtf8 = true, Endian endian = Endian.little}) : _endian = endian {
     _useUtf8 = useUtf8;
   }
 
+  final ByteBuffer _buffer;
+  late bool _useUtf8;
+  final Endian _endian;
+
   void _writeValue(ByteData data) {
-    int length = data.lengthInBytes;
+    final int length = data.lengthInBytes;
     if (_buffer._writeHead + length > _buffer.count) _buffer.allocate(length);
     _buffer.getArray().setRange(_buffer._writeHead, _buffer._writeHead + length, data.buffer.asUint8List());
     _buffer.incrementWriteHead(length);
@@ -147,39 +146,39 @@ class ByteWriter {
     _writeValue(byteData);
   }
 
-  void writeBytes(List<int> values) {
+  void putBytes(List<int> values) {
     if (_buffer._writeHead + values.length > _buffer.count) _buffer.allocate(values.length);
     _buffer.getArray().setRange(_buffer._writeHead, _buffer._writeHead + values.length, values);
     _buffer.incrementWriteHead(values.length);
   }
 
-  void writeString(String value) {
+  void putString(String value) {
     final List<int> stringBytes = (_useUtf8 ? utf8 : ascii).encode(value);
     final int stringLength = stringBytes.length;
 
     put32(stringLength);
 
     if (stringLength > 0) {
-      writeBytes(stringBytes);
+      putBytes(stringBytes);
     }
   }
 }
 
 class PacketBuffer {
-  final ByteBuffer _buffer;
-  final ByteReader _reader;
-  final ByteWriter _writer;
-
-  PacketBuffer._(this._buffer, this._reader, this._writer);
-
   factory PacketBuffer({bool useUtf8 = true, Endian endian = Endian.little}) {
     final ByteBuffer buffer = ByteBuffer();
     return PacketBuffer._(
       buffer,
-      ByteReader(buffer, useUtf8: useUtf8),
-      ByteWriter(buffer, useUtf8: useUtf8),
+      ByteReader(buffer, useUtf8: useUtf8, endian: endian),
+      ByteWriter(buffer, useUtf8: useUtf8, endian: endian),
     );
   }
+
+  PacketBuffer._(this._buffer, this._reader, this._writer);
+
+  final ByteBuffer _buffer;
+  final ByteReader _reader;
+  final ByteWriter _writer;
 
   ByteReader get reader => _reader;
   ByteWriter get writer => _writer;
