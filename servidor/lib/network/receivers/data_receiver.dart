@@ -2,7 +2,7 @@ import 'package:servidor/interfaces/receiver_message_interface.dart';
 import 'package:servidor/models/connection_model.dart';
 import 'package:servidor/network/packet_buffer.dart';
 import 'package:servidor/network/packets/client_packets.dart';
-import 'package:servidor/network/receivers/placeholder_message.dart';
+import 'package:servidor/network/receivers/messages/placeholder_message.dart';
 import 'package:servidor/server/client_connection.dart';
 import 'package:servidor/utils/logger_utils.dart';
 
