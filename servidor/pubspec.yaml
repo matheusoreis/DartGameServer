@@ -1,12 +1,11 @@
 name: servidor
-description: A sample command-line application.
-version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+description: DartGameServer é um servidor multiplayer totalmente escrita em dart usando TCP para conexão entre o cliente e o servidor.
+version: 1.0.1
+epository: https://github.com/matheusoreis/DartGameServer
 
 environment:
   sdk: ^3.2.3
 
-# Add regular dependencies here.
 dependencies:
   ansicolor: ^2.0.2
   pocketbase: ^0.18.1
