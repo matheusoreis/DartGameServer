@@ -24,7 +24,6 @@ linter:
     - avoid_bool_literals_in_conditional_expressions
     - avoid_double_and_int_checks
     - avoid_empty_else
-    - public_member_api_docs
     - avoid_equals_and_hash_code_on_mutable_classes
     - avoid_escaping_inner_quotes
     - avoid_field_initializers_in_const_classes
