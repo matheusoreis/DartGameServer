@@ -242,3 +242,28 @@ class SlotManager<Element> {
 - `void removeWhere(bool Function(Element?) test)`: Remove os elementos que correspondem ao critério de teste especificado.
 - `List<Element?> getFilledSlotsAsList()`: Retorna uma lista de todos os slots preenchidos.
 - `bool any(bool Function(Element?) test)`: Verifica se algum slot corresponde ao critério de teste especificado.
+
+Em resumo, a classe SlotManager oferece uma maneira flexível e eficiente de gerenciar uma coleção de slots, fornecendo métodos para adicionar, remover, atualizar e consultar os elementos nos slots.
+
+### ServerMemory
+
+A classe ServerMemory gerencia a memória do servidor. Esta classe é implementada como um singleton para garantir que haja apenas uma instância dela ao longo de todo o ciclo de vida do servidor.
+
+```Dart
+class ServerMemory {
+  factory ServerMemory() {
+    return _singletonInstance;
+  }
+
+  ServerMemory._();
+  static final ServerMemory _singletonInstance = ServerMemory._();
+
+  SlotManager<ConnectionModel> clientConnections = SlotManager(ServerConstants.maxPlayers);
+}
+```
+
+- `factory ServerMemory()`: Retorna a instância singleton de ServerMemory.
+- `ServerMemory._()`: Construtor privado para garantir que a classe só possa ser instanciada internamente.
+- `SlotManager<ConnectionModel> clientConnections`: Gerencia as conexões dos clientes utilizando um SlotManager para armazenar até ServerConstants.maxPlayers conexões.
+
+Em resumo, a classe ServerMemory implementa um padrão de design Singleton para gerenciar a memória do servidor. Ela possui uma única instância _singletonInstance que é acessível através de um método factory ServerMemory().
