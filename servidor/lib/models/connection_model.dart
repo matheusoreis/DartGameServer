@@ -1,27 +1,44 @@
 import 'dart:io';
 
+import 'package:servidor/models/user_model.dart';
 import 'package:servidor/server/server_memory.dart';
 
-/// modelos de dados de conexão do cliente.
-///
-/// Este modelo representa uma instância de cliente de rede.
 interface class ConnectionModel {
-  /// Cria uma nova instância de `ClientConnectionModel` com os dados do cliente.
-  ConnectionModel({required this.id, required this.socket});
+  ConnectionModel({
+    required this.id,
+    required this.socket,
+    this.user,
+  });
 
-  /// Identificador do cliente.
   final int id;
-
-  /// Socket do cliente.
   final Socket socket;
+  String? token;
+  UserModel? user;
 
-  /// Verifica se um determinado índice de slot está atualmente conectado.
-  ///
-  /// Este método retorna verdadeiro se o slot especificado estiver ocupado por um cliente conectado,
-  /// caso contrário, retorna falso.
-  ///
-  /// Retorna verdadeiro se o slot estiver ocupado, falso caso contrário.
   bool isConnected() {
     return !ServerMemory().clientConnections.isSlotEmpty(id);
+  }
+
+  void update({
+    String? token,
+    UserModel? user,
+  }) {
+    this.token = token ?? this.token;
+    this.user = user ?? this.user;
+
+    ServerMemory().clientConnections.update(id, this);
+  }
+
+  ConnectionModel copyWith({
+    int? id,
+    Socket? socket,
+    String? token,
+    UserModel? user,
+  }) {
+    return ConnectionModel(
+      id: id ?? this.id,
+      socket: socket ?? this.socket,
+      user: user ?? this.user,
+    );
   }
 }
