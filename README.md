@@ -10,7 +10,7 @@ O objetivo do **DGS** é fornecer uma maneira fácil de lidar com conexões MMO 
 
 ## Requisitos
 
-O **Dart Game Server (DGS)** é uma solução totalmente desenvolvida em [Dart](https://dart.dev), sem depender de outras bibliotecas ou tecnologias externas. O projeto utiliza apenas pacotes disponíveis no [pub.dev](https://pub.dev/packages), sendo eles:
+O **Dart Game Server (DGS)** é uma solução totalmente desenvolvida em [Dart](https://dart.dev), sem depender de outras bibliotecas ou tecnologias externas. O projeto utiliza apenas dois packages do [pub.dev](https://pub.dev/packages), sendo eles:
 
 - [Ansicolor](https://pub.dev/packages/ansicolor): Adiciona suporte a cores no terminal.
 - [Http](https://pub.dev/packages/http): Facilita a realização de requisições HTTP.
@@ -157,3 +157,19 @@ class RingBuffer {
 - `take(int size)`: Retira um número especificado de bytes do buffer.
 
 Em resumo o `PacketBuffer` oferece uma interface para leitura e escrita de dados binários, enquanto o `RingBuffer` fornece um buffer circular eficiente para armazenamento temporário dos bytes.
+
+### DataSender
+
+A classe DataSender é responsável pelo envio de dados aos clientes conectados ao servidor. Ela fornece métodos para enviar dados a um cliente específico, a todos os clientes conectados, ou a todos os clientes exceto um específico.
+
+```Dart
+class DataSender {
+  sendDataTo(ConnectionModel client, List<int> data);
+  sendDataToAll(List<int> data);
+  sendDataToAllExcept(ConnectionModel client, List<int> data);
+}
+```
+
+- `sendDataTo(ConnectionModel client, List<int> data)`: 
+- `sendDataToAll(List<int> data)`: 
+- `sendDataToAllExcept(ConnectionModel client, List<int> data)`: 
