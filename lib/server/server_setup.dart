@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:servidor/server/client_connection.dart';
 import 'package:servidor/server/server_constants.dart';
+import 'package:servidor/server/server_globals.dart';
+import 'package:servidor/server/server_loop.dart';
 import 'package:servidor/utils/logger_utils.dart';
 
 class ServerSetup {
@@ -26,6 +29,20 @@ class ServerSetup {
 
       LoggerUtils.log(
         message: 'Servidor iniciado com sucesso!',
+        type: LoggerTypes.info,
+      );
+
+      LoggerUtils.log(
+        message: 'Loop iniciando...',
+        type: LoggerTypes.info,
+      );
+
+      ServerGlobals.serverOpen = true;
+
+      unawaited(ServerLoop.start());
+
+      LoggerUtils.log(
+        message: 'Loop iniciado com sucesso...',
         type: LoggerTypes.info,
       );
 
