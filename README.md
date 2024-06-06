@@ -272,6 +272,14 @@ class ServerMemory {
 
 Em resumo, a classe ServerMemory implementa um padrão de design Singleton para gerenciar a memória do servidor. Ela possui uma única instância _singletonInstance que é acessível através de um método factory ServerMemory().
 
+## Envio e Recebimento de pacotes
+
+### SenderMessage
+TODO
+
+### ReceiverMessage
+TODO
+
 ## Licença
 
 Este projeto está licenciado sob a Licença Pública Mozilla, Versão 2.0 - consulte o arquivo [LICENSE](LICENSE) para obter detalhes.
