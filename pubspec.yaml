@@ -8,7 +8,6 @@ environment:
 
 dependencies:
   ansicolor: ^2.0.2
-  pocketbase: ^0.18.1
   http: ^1.2.1
 
 dev_dependencies:
