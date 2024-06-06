@@ -2,8 +2,8 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:servidor/models/connection_model.dart';
-import 'package:servidor/network/data/receiver/data_receiver.dart';
 import 'package:servidor/network/packet_buffer.dart';
+import 'package:servidor/network/receivers/data_receiver.dart';
 import 'package:servidor/network/ring_buffer.dart';
 import 'package:servidor/server/server_memory.dart';
 import 'package:servidor/utils/logger_utils.dart';

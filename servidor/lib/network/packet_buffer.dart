@@ -185,6 +185,7 @@ class PacketBuffer {
   Uint8List get bufferArray => _buffer.getArray();
   int get writeHead => _buffer._writeHead;
   int get readHead => _buffer._readHead;
+  int get length => _buffer.length;
 
   void trim() {
     _buffer.trim();
