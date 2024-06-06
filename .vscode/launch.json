@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "DartGameServer",
+      "request": "launch",
+      "type": "dart",
+      "program": "bin/servidor.dart"
+    }
+  ]
+}
