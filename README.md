@@ -170,6 +170,26 @@ class DataSender {
 }
 ```
 
-- `sendDataTo(ConnectionModel client, List<int> data)`: 
-- `sendDataToAll(List<int> data)`: 
-- `sendDataToAllExcept(ConnectionModel client, List<int> data)`: 
+- `sendDataTo(ConnectionModel client, List<int> data)`: Envia os dados especificados para um cliente específico identificado pelo ConnectionModel.
+- `sendDataToAll(List<int> data)`: Envia os dados especificados para todos os clientes conectados ao servidor.
+- `sendDataToAllExcept(ConnectionModel client, List<int> data)`: Envia os dados especificados para todos os clientes conectados, exceto para o cliente identificado pelo ConnectionModel.
+
+
+### DataReceiver
+
+A classe DataReceiver é responsável por receber e processar dados enviados pelos clientes conectados ao servidor. Ela utiliza uma lista de mensagens receptoras para tratar diferentes tipos de pacotes recebidos.
+
+```Dart
+class DataReceiver {
+  DataReceiver();
+
+  _processMessages();
+  receiverData(ConnectionModel client, List<int> data);
+}
+```
+
+- `DataReceiver()`: Construtor da classe que inicializa a lista de mensagens e chama o método _processMessages para configurar as mensagens específicas.
+- `_processMessages()`: Método que inicializa a lista _receiverDataMessage com as mensagens apropriadas.
+- `receiverData(ConnectionModel client, List<int> data)`: Método que recebe os dados do cliente, identifica o tipo de mensagem e chama o método receiver da mensagem correspondente.
+
+Em resumo, a classe DataReceiver permite o processamento eficiente de dados recebidos dos clientes, associando diferentes tipos de pacotes a mensagens específicas.
